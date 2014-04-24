@@ -1,0 +1,23 @@
+%h1 Listing reservations
+
+%table
+  %tr
+    %th Start time
+    %th End time
+    %th Table
+    %th
+    %th
+    %th
+
+  - @reservations.each do |reservation|
+    %tr
+      %td= reservation.start_time
+      %td= reservation.end_time
+      %td= reservation.table_id
+      %td= link_to 'Show', reservation
+      %td= link_to 'Edit', edit_reservation_path(reservation)
+      %td= link_to 'Destroy', reservation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reservation', new_reservation_path
