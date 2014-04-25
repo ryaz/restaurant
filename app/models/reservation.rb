@@ -7,6 +7,7 @@ class Reservation < ActiveRecord::Base
              (start_time < :start_time AND end_time > :end_time)",
              start_time: start_time, end_time: end_time)
   }
+  scope :not_self_id, ->(id) { where.not(id: id) if id }
 
   validates :table_id, :start_time, :end_time, presence: true
   validates :table_id, numericality: {greater_than_or_equal_to: 1}
@@ -14,7 +15,7 @@ class Reservation < ActiveRecord::Base
   validate :validate_times, :overbooking
 
   def overbooking
-    if self.class.by_table_id(table_id).overlapping(start_time, end_time).any?
+    if self.class.by_table_id(table_id).overlapping(start_time, end_time).not_self_id(id).any?
       errors.add(:base, "is already booked")
     end
   end
