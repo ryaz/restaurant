@@ -64,4 +64,17 @@ describe Reservation do
     reservation = build(:reservation, start_time: "2010-01-01 21:00:00", end_time: "2010-01-01 20:00:00")
     reservation.should_not be_valid
   end
+
+  it "updates reservation without overlapping" do
+    reservation = create(:reservation, start_time: "2010-01-01 21:00:00", end_time: "2010-01-01 22:00:00")
+    reservation.end_time = "2010-01-01 22:00:00"
+    reservation.should be_valid
+  end
+
+  it "not updates reservation with overlapping" do
+    reservation = create(:reservation, start_time: "2010-01-01 18:00:00", end_time: "2010-01-01 19:00:00")
+    reservation2 = create(:reservation, start_time: "2010-01-01 20:00:00", end_time: "2010-01-01 22:00:00")
+    reservation.end_time = "2010-01-01 21:00:00"
+    reservation.should_not be_valid
+  end
 end

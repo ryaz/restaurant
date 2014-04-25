@@ -1,6 +1,6 @@
 == README
 
-* Ruby version - 2.1.1
+* Ruby: 2.1.1
 
-* How to run the test suite - <tt>rake spec</tt>
+* Tests: https://circleci.com/gh/ryaz/restaurant or <tt>rake spec</tt>
 

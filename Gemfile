@@ -8,7 +8,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'pg'
 
 gem 'jquery-ui-rails'
 gem 'haml-rails'
@@ -18,6 +17,7 @@ gem 'rspec-rails'
 gem 'shoulda'
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
 end
 
