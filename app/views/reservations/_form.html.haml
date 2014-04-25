@@ -8,10 +8,10 @@
 
   .field
     = f.label :start_time
-    = f.datetime_select :start_time
+    = f.text_field :start_time, class: 'datetimepicker'
   .field
     = f.label :end_time
-    = f.datetime_select :end_time
+    = f.text_field :end_time, class: 'datetimepicker'
   .field
     = f.label :table_id
     = f.number_field :table_id
